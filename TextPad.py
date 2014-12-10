@@ -16,7 +16,7 @@ def about():
 	pass
 
 def colourChange():
-	pass
+	tkinter.messagebox.showwarning 	
 
 def sizeChange():
 	pass
@@ -29,6 +29,9 @@ def save():
 	f.write(text2save)
 	f.close()
 
+def messagebox():
+	tkinter.messagebox.showinfo("info", "message")
+
 #------------------------------------------------------
 
 #TextArea
@@ -39,7 +42,7 @@ def save():
 
 TextArea = Text(root, height=40, width=90) #Creates a text zone or area for the user to write stuff in
 TextArea.pack(side=LEFT, fill=Y) #Says which side it is on and to fill on the Y axis
-#------------------------------------------------------
+#------------------------------------------------------ 
 #Scroll bar
 Scroll = Scrollbar(root) #Creates a scroll bar on the 'root' window
 Scroll.pack(side=RIGHT, fill=Y)
@@ -60,6 +63,7 @@ menubar.add_command(label="Font size", command=sizeChange)
 menubar.add_command(label="|")
 
 menubar.add_command(label="Save...", command=save)
+menubar.add_command(label="messagebox", command=messagebox)
 
 root.config(menu=menubar) #Configures the window to appear on the menu
 #------------------------------------------------------
