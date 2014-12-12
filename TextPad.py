@@ -13,13 +13,13 @@ root.title("Text Pad - Will Venn") #Sets the name/title of said window
 #------------------------------------------------------
 #Functions:
 def about():
-	pass
+	tkinter.messagebox.showwarning("About", "Sorry this Function is not available yet :/")
 
 def colourChange():
-	tkinter.messagebox.showwarning 	
+	tkinter.messagebox.showwarning("Colour change", "Sorry this Function is not available yet :/")	
 
 def sizeChange():
-	pass
+	tkinter.messagebox.showwarning("Size change", "Sorry this Function is not available yet :/")
 
 def save():
 	f = tkinter.filedialog.asksaveasfile(mode='w', defaultextension=".txt")
@@ -29,18 +29,25 @@ def save():
 	f.write(text2save)
 	f.close()
 
+def load_file():
+	openfile = tkinter.filedialog.askopenfilename(filetypes = ( ("Python files", "*.py"), ("All files", "*.*") ) )
+	print ("launched load_file")
+	if openfile != None:
+		content = open(openfile).read()
+		##content = openfile.read()
+		TextArea.insert("end", content)
+		openfile.close()
+
+
 def messagebox():
-	tkinter.messagebox.showinfo("info", "message")
+	tkinter.messagebox.showwarning("info", "message")
 
 #------------------------------------------------------
 
-#TextArea
-##text = open(filename).read()
-##TextArea.delete(1.0, END)
-##TextArea.insert(END, text)
-##TextArea.mark_set(INSERT, 1.0)
+#TextArea text = open(filename).read() TextArea.delete(1.0, END)
+#TextArea.insert(END, text) TextArea.mark_set(INSERT, 1.0)
 
-TextArea = Text(root, height=40, width=90) #Creates a text zone or area for the user to write stuff in
+TextArea = Text(root, height=60, width=120) #Creates a text zone or area for the user to write stuff in
 TextArea.pack(side=LEFT, fill=Y) #Says which side it is on and to fill on the Y axis
 #------------------------------------------------------ 
 #Scroll bar
@@ -63,7 +70,8 @@ menubar.add_command(label="Font size", command=sizeChange)
 menubar.add_command(label="|")
 
 menubar.add_command(label="Save...", command=save)
-menubar.add_command(label="messagebox", command=messagebox)
+menubar.add_command(label="Open...", command=load_file)
+##menubar.add_command(label="messagebox", command=messagebox)
 
 root.config(menu=menubar) #Configures the window to appear on the menu
 #------------------------------------------------------
